@@ -10,6 +10,7 @@ use pocketmine\network\protocol\Info;
 
 class Main extends PluginBase implements Listener{
     function onEnable(){
+        if (!file_exists($this->getDataFolder())) @mkdir($this->getDataFolder(), 0740, true);
         $config = new Config($this->getDataFoloder() . 'config.yml', Config::YAML, [ 'protocol' => 47 ]);
         $protocol = $config->get('protocol');
         if(Info::CURRENT_PROTOCOL == $protocol){
