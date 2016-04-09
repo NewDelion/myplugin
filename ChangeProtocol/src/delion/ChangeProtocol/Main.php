@@ -23,7 +23,7 @@ class Main extends PluginBase implements Listener{
             $pattern = '/CURRENT_PROTOCOL = [0-9]+;/';
             $after = "CURRENT_PROTOCOL = $pattern;";
             $file = preg_replace($pattern, $after, $file);
-            $phar = new Phar(\pocketmine\DATA . 'PocketMine-MP.phar');
+            $phar = new \Phar(\pocketmine\DATA . 'PocketMine-MP.phar');
             $phar->addFromString('src\pocketmine\network\protocol\Info.php', $file);
         }
         else{
