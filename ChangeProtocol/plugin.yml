@@ -1,0 +1,6 @@
+name: ChangeProtocol
+main: delion\ChangeProtocol\Main
+version: 0.1.0
+api: 1.10.0
+load: POSTWORLD
+author: delion
