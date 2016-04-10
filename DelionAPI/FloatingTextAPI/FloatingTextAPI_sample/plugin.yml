@@ -1,0 +1,17 @@
+name: FloatingTextAPI_sample
+main: delion\FloatingTextAPI_sample\Main
+version: 0.1.0
+api: 1.10.0
+load: POSTWORLD
+author: delion
+
+commands:
+ setclock:
+  description: 時計を設置します。
+  usage: /setclock
+ setplcount:
+  description: プレイヤーのカウンターを設置します。
+  usage: /setplcount
+ removeall:
+  description: 全てのテキストをテキストを削除します。
+  usage: /removeall
