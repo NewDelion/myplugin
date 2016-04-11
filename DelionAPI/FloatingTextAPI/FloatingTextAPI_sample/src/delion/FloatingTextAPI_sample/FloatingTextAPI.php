@@ -136,29 +136,29 @@ class FloatingTextAPI{
 			Entity::DATA_NAMETAG => [Entity::DATA_TYPE_STRING, $text],
 			Entity::DATA_SHOW_NAMETAG => [Entity::DATA_TYPE_BYTE, 1],
 			Entity::DATA_NO_AI => [Entity::DATA_TYPE_BYTE, 1]
-        ];
-        if($player !== false && $this->canShow($text_id, $player->getName()))
-        	$player->dataPacket($pk);
-        else if(isset($this->text_list[$text_id]['show'])){
-        	foreach($this->text_list[$text_id]['show'] as $name)
-        		if(($pl = $this->owner->getServer()->getPlayer($name)) != null)
-        			$pl->dataPacket($pk);
-        }
-        else
-        	$this->owner->getServer()->broadcastPacket($this->owner->getServer()->getOnlinePlayers(), $pk);
+		];
+		if($player !== false && $this->canShow($text_id, $player->getName()))
+			$player->dataPacket($pk);
+		else if(isset($this->text_list[$text_id]['show'])){
+			foreach($this->text_list[$text_id]['show'] as $name)
+				if(($pl = $this->owner->getServer()->getPlayer($name)) != null)
+					$pl->dataPacket($pk);
+		}
+		else
+			$this->owner->getServer()->broadcastPacket($this->owner->getServer()->getOnlinePlayers(), $pk);
 	}
 	private function despawnText($text_id, $player = false){
 		$pk = new \pocketmine\network\protocol\RemoveEntityPacket();
 		$pk->eid = $this->text_list[$text_id]['eid'];
 		if($player !== false && $this->canShow($text_id, $player->getName()))
-        	$player->dataPacket($pk);
-        else if(isset($this->text_list[$text_id]['show'])){
-        	foreach($this->text_list[$text_id]['show'] as $name)
-        		if(($pl = $this->owner->getServer()->getPlayer($name)) != null)
-        			$pl->dataPacket($pk);
-        }
-        else
-        	$this->owner->getServer()->broadcastPacket($this->owner->getServer()->getOnlinePlayers(), $pk);
+			$player->dataPacket($pk);
+		else if(isset($this->text_list[$text_id]['show'])){
+			foreach($this->text_list[$text_id]['show'] as $name)
+				if(($pl = $this->owner->getServer()->getPlayer($name)) != null)
+					$pl->dataPacket($pk);
+		}
+		else
+			$this->owner->getServer()->broadcastPacket($this->owner->getServer()->getOnlinePlayers(), $pk);
 	}
 	private function changeText($text_id, $player = false){
 		$pk = new \pocketmine\network\protocol\SetEntityDataPacket();
@@ -169,28 +169,28 @@ class FloatingTextAPI{
 			Entity::DATA_NAMETAG => [Entity::DATA_TYPE_STRING, $text],
 			Entity::DATA_SHOW_NAMETAG => [Entity::DATA_TYPE_BYTE, 1],
 			Entity::DATA_NO_AI => [Entity::DATA_TYPE_BYTE, 1]
-        ];
-        if($player !== false && $this->canShow($text_id, $player->getName()))
-        	$player->dataPacket($pk);
-        else if(isset($this->text_list[$text_id]['show'])){
-        	foreach($this->text_list[$text_id]['show'] as $name)
-        		if(($pl = $this->owner->getServer()->getPlayer($name)) != null)
-        			$pl->dataPacket($pk);
-        }
-        else
-        	$this->owner->getServer()->broadcastPacket($this->owner->getServer()->getOnlinePlayers(), $pk);
+		];
+		if($player !== false && $this->canShow($text_id, $player->getName()))
+			$player->dataPacket($pk);
+		else if(isset($this->text_list[$text_id]['show'])){
+			foreach($this->text_list[$text_id]['show'] as $name)
+				if(($pl = $this->owner->getServer()->getPlayer($name)) != null)
+					$pl->dataPacket($pk);
+		}
+		else
+			$this->owner->getServer()->broadcastPacket($this->owner->getServer()->getOnlinePlayers(), $pk);
 	}
 	private function moveText($text_id, $player = false){
 		$pk = new \pocketmine\network\protocol\MoveEntityPacket();
 		$pk->entities = [$this->text_list[$text_id]['eid'], $this->text_list[$text_id]['position']->x, $this->text_list[$text_id]['position']->y, $this->text_list[$text_id]['position']->z, 0, 0, 0];
 		if($player !== false && $this->canShow($text_id, $player->getName()))
-        	$player->dataPacket($pk);
-        else if(isset($this->text_list[$text_id]['show'])){
-        	foreach($this->text_list[$text_id]['show'] as $name)
-        		if(($pl = $this->owner->getServer()->getPlayer($name)) != null)
-        			$pl->dataPacket($pk);
-        }
-        else
-        	$this->owner->getServer()->broadcastPacket($this->owner->getServer()->getOnlinePlayers(), $pk);
+			$player->dataPacket($pk);
+		else if(isset($this->text_list[$text_id]['show'])){
+			foreach($this->text_list[$text_id]['show'] as $name)
+				if(($pl = $this->owner->getServer()->getPlayer($name)) != null)
+					$pl->dataPacket($pk);
+		}
+		else
+			$this->owner->getServer()->broadcastPacket($this->owner->getServer()->getOnlinePlayers(), $pk);
 	}
 }
