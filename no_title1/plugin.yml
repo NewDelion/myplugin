@@ -1,0 +1,6 @@
+name: no_title1
+main: delion\no_title1\Main
+version: 0.1.0
+api: 1.10.0
+load: POSTWORLD
+author: delion
