@@ -39,7 +39,7 @@ class Main extends PluginBase implements Listener{
     
     function onDataPacketReceive(DataPacketReceiveEvent $event){
         $packet = $event->getPacket();
-        if($packet instanceof \pocketmine\network\protocl\LoginPacket){
+        if($packet instanceof \pocketmine\network\protocol\LoginPacket){
             if($packet->protocol1 > Info::CURRENT_PROTOCOL){
                 $this->getLogger()->info(TextFormat::LIGHT_PURPLE . '最新のプロトコルナンバーを検出！！');
                 $this->getLogger()->info(TextFormat::LIGHT_PURPLE . 'プロトコルナンバー：' . $packet->protocol1);
