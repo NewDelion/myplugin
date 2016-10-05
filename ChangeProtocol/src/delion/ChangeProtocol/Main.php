@@ -21,7 +21,7 @@ class Main extends PluginBase implements Listener{
         if(substr(\pocketmine\PATH, 0, 7) === "phar://"){
             $file = file_get_contents(\pocketmine\PATH . 'src/pocketmine/network/protocol/Info.php');
             $pattern = '/CURRENT_PROTOCOL = [0-9]+;/';
-            $after = "CURRENT_PROTOCOL = $pattern;";
+            $after = "CURRENT_PROTOCOL = $protocol;";
             $file = preg_replace($pattern, $after, $file);
             $phar = new \Phar(\pocketmine\DATA . 'PocketMine-MP.phar');
             $phar->addFromString('src\pocketmine\network\protocol\Info.php', $file);
@@ -29,7 +29,7 @@ class Main extends PluginBase implements Listener{
         else{
             $file = file_get_contents(\pocketmine\DATA . 'src/pocketmine/network/protocol/Info.php');
             $pattern = '/CURRENT_PROTOCOL = [0-9]+;/';
-            $after = "CURRENT_PROTOCOL = $pattern;";
+            $after = "CURRENT_PROTOCOL = $protocol;";
             $file = preg_replace($pattern, $after, $file);
             file_put_contents(\pocketmine\DATA . 'src/pocketmine/network/protocol/Info.php', $file);
         }
