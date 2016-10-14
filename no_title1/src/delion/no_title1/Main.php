@@ -6,7 +6,6 @@ use pocketmine\event\Listener;
 use pocketmine\event\player\PlayerInteractEvent;
 use pocketmine\scheduler\PluginTask;
 use pocketmine\level\particle\DustParticle;
-use pocketmine\math\Vector3;
 
 class Main extends PluginBase implements Listener{
     function onEnable(){
