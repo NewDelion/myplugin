@@ -46,6 +46,6 @@ class Magic extends PluginTask{
         $dust = new DustParticle($point['position'], $point['r'], $point['g'], $point['b']);
         $this->level->addParticle($dust);
         if(count($this->points) == 0)
-            $this->getServer()->getScheduler()->cancelTask($this->getTaskId());
+            $this->owner->getServer()->getScheduler()->cancelTask($this->getTaskId());
     }
 }
