@@ -131,11 +131,14 @@ class FloatingTextAPI{
 		$pk->y = $this->text_list[$text_id]['position']->y;
 		$pk->z = $this->text_list[$text_id]['position']->z;
 		$text = $this->text_list[$text_id]['title'] . ($this->text_list[$text_id]['text'] !== "" ? "\n" . $this->text_list[$text_id]['text'] : "");
+		@$flags |= 1 << Entity::DATA_FLAG_INVISIBLE;
+		@$flags |= 1 << Entity::DATA_FLAG_CAN_SHOW_NAMETAG;
+		@$flags |= 1 << Entity::DATA_FLAG_ALWAYS_SHOW_NAMETAG;
+		@$flags |= 1 << Entity::DATA_FLAG_IMMOBILE;
 		$pk->metadata = [
-			Entity::DATA_FLAGS => [Entity::DATA_TYPE_BYTE, 1 << Entity::DATA_FLAG_INVISIBLE],
+			Entity::DATA_FLAGS => [Entity::DATA_TYPE_LONG, $flags],
 			Entity::DATA_NAMETAG => [Entity::DATA_TYPE_STRING, $text],
-			Entity::DATA_SHOW_NAMETAG => [Entity::DATA_TYPE_BYTE, 1],
-			Entity::DATA_NO_AI => [Entity::DATA_TYPE_BYTE, 1]
+			Entity::DATA_LEAD_HOLDER_EID => [Entity::DATA_TYPE_LONG, -1]
 		];
 		if($player !== false && $this->canShow($text_id, $player->getName()))
 			$player->dataPacket($pk);
@@ -164,11 +167,14 @@ class FloatingTextAPI{
 		$pk = new \pocketmine\network\protocol\SetEntityDataPacket();
 		$pk->eid = $this->text_list[$text_id]['eid'];
 		$text = $this->text_list[$text_id]['title'] . ($this->text_list[$text_id]['text'] !== "" ? "\n" . $this->text_list[$text_id]['text'] : "");
+		@$flags |= 1 << Entity::DATA_FLAG_INVISIBLE;
+		@$flags |= 1 << Entity::DATA_FLAG_CAN_SHOW_NAMETAG;
+		@$flags |= 1 << Entity::DATA_FLAG_ALWAYS_SHOW_NAMETAG;
+		@$flags |= 1 << Entity::DATA_FLAG_IMMOBILE;
 		$pk->metadata = [
-			Entity::DATA_FLAGS => [Entity::DATA_TYPE_BYTE, 1 << Entity::DATA_FLAG_INVISIBLE],
+			Entity::DATA_FLAGS => [Entity::DATA_TYPE_LONG, $flags],
 			Entity::DATA_NAMETAG => [Entity::DATA_TYPE_STRING, $text],
-			Entity::DATA_SHOW_NAMETAG => [Entity::DATA_TYPE_BYTE, 1],
-			Entity::DATA_NO_AI => [Entity::DATA_TYPE_BYTE, 1]
+			Entity::DATA_LEAD_HOLDER_EID => [Entity::DATA_TYPE_LONG, -1]
 		];
 		if($player !== false && $this->canShow($text_id, $player->getName()))
 			$player->dataPacket($pk);
@@ -182,7 +188,10 @@ class FloatingTextAPI{
 	}
 	private function moveText($text_id, $player = false){
 		$pk = new \pocketmine\network\protocol\MoveEntityPacket();
-		$pk->entities = [$this->text_list[$text_id]['eid'], $this->text_list[$text_id]['position']->x, $this->text_list[$text_id]['position']->y, $this->text_list[$text_id]['position']->z, 0, 0, 0];
+		$pk->eid = $this->text_list[$text_id]['eid'];
+		$pk->x = $this->text_list[$text_id]['position']->x;
+		$pk->y = $this->text_list[$text_id]['position']->y;
+		$pk->z = $this->text_list[$text_id]['position']->z;
 		if($player !== false && $this->canShow($text_id, $player->getName()))
 			$player->dataPacket($pk);
 		else if(isset($this->text_list[$text_id]['show'])){
